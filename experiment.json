@@ -1,0 +1,522 @@
+{
+    "name": "YerevaNN/DIIN-in-Keras",
+    "url": "https://github.com/aqui-tna/DIIN-in-Keras",
+    "python_version": "3",
+    "requirements": {
+      "req_file": "requirements.txt",
+      "pip": [
+        "tensorflow"
+      ],
+      "others": [
+      ]
+    },
+    "to_run": {
+        "decision": true,
+        "reason": null
+    },
+    "entries": [
+        {
+          "cmd": "python preprocess.py --p 32 --h 32 --chars_per_word 16 --save_dir data/ --dataset snli --word_vec_save_path data/word-vectors.npy",
+          "main": "preprocess.py",
+          "steps": [
+              "data-preprocessing"
+          ],
+          "args_lib": "argparse",
+          "args": [
+            {
+                "names": [
+                    "--p"
+                ],
+                "input": true,
+                "dest": "p",
+                "ex_has_default": true,
+                "default": 32,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--h"
+                ],
+                "input": true,
+                "dest": "h",
+                "ex_has_default": true,
+                "default": 32,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--chars_per_word"
+                ],
+                "input": true,
+                "dest": "chars_per_word",
+                "ex_has_default": true,
+                "default": 16,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--max_word_vecs"
+                ],
+                "input": true,
+                "dest": "max_word_vecs",
+                "ex_has_default": false,
+                "default": null,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--save_dir"
+                ],
+                "input": true,
+                "dest": "save_dir",
+                "ex_has_default": true,
+                "default": "data/",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--dataset"
+                ],
+                "input": true,
+                "dest": "dataset",
+                "ex_has_default": true,
+                "default": "snli",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--word_vec_load_path"
+                ],
+                "input": true,
+                "dest": "word_vec_load_path",
+                "ex_has_default": false,
+                "default": null,
+                "type": "float",
+                "mandatory": true
+            },
+            {
+                "names": [
+                    "--word_vec_save_path"
+                ],
+                "input": true,
+                "dest": "word_vec_save_path",
+                "ex_has_default": true,
+                "default": "data/word-vectors.npy",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--normalize_word_vectors"
+                ],
+                "input": false,
+                "dest": "normalize_word_vectors",
+                "ex_has_default": true,
+                "default": false,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--omit_word_vectors"
+                ],
+                "input": false,
+                "dest": "omit_word_vectors",
+                "ex_has_default": true,
+                "default": false,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--omit_chars"
+                ],
+                "input": false,
+                "dest": "omit_chars",
+                "ex_has_default": true,
+                "default": false,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--omit_syntactical_features"
+                ],
+                "input": false,
+                "dest": "omit_syntactical_features",
+                "ex_has_default": true,
+                "default": false,
+                "type": "float",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "--omit_exact_match"
+                ],
+                "input": false,
+                "dest": "omit_exact_match",
+                "ex_has_default": true,
+                "default": false,
+                "type": "float",
+                "mandatory": false
+            }
+        ],
+          "ins": [],
+          "outs": [
+              {
+                  "type": "dir",
+                  "location": "data/",
+                  "artifact": "dataset",
+                  "ex_from": "cmd",
+                  "ex_in_repo": false
+              }
+          ]
+          },
+          {
+            "cmd": "python train.py --batch_size 70 --eval_interval 500 --train_word_embeddings --char_embed_size 8 --char_conv_filters 100 --char_conv_kernel 5 --dropout_initial_keep_rate 1. --dropout_decay_rate 0.977 --dropout_decay_interval 10000 --first_scale_down_ratio 0.3 --transition_scale_down_ratio 0.5 --growth_rate 20 --layers_per_dense_block 8 --dense_blocks 3 --labels 3 --load_dir ./data --models_dir ./models/ --logdir ./logs --word_vec_path ./data/word-vectors.npy",
+            "main": "train.py",
+            "steps": [
+                "trainning"
+            ],
+            "args_lib": "argparse",
+            "args": [
+                {
+                    "names": [
+                        "--batch_size"
+                    ],
+                    "input": true,
+                    "dest": "batch_size",
+                    "ex_has_default": true,
+                    "default": 70,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--eval_interval"
+                    ],
+                    "input": true,
+                    "dest": "eval_interval",
+                    "ex_has_default": true,
+                    "default": 500,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--char_embed_size"
+                    ],
+                    "input": true,
+                    "dest": "char_embed_size",
+                    "ex_has_default": true,
+                    "default": 8,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--char_conv_filters"
+                    ],
+                    "input": true,
+                    "dest": "char_conv_filters",
+                    "ex_has_default": true,
+                    "default": 100,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--char_conv_kernel"
+                    ],
+                    "input": true,
+                    "dest": "char_conv_kernel",
+                    "ex_has_default": true,
+                    "default": 5,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--dropout_initial_keep_rate"
+                    ],
+                    "input": true,
+                    "dest": "dropout_initial_keep_rate",
+                    "ex_has_default": true,
+                    "default": 1.0,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--dropout_decay_rate"
+                    ],
+                    "input": true,
+                    "dest": "dropout_decay_rate",
+                    "ex_has_default": true,
+                    "default": 0.977,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--dropout_decay_interval"
+                    ],
+                    "input": true,
+                    "dest": "dropout_decay_interval",
+                    "ex_has_default": true,
+                    "default": 10000,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--l2_full_step"
+                    ],
+                    "input": true,
+                    "dest": "l2_full_step",
+                    "ex_has_default": true,
+                    "default": 100000,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--l2_full_ratio"
+                    ],
+                    "input": true,
+                    "dest": "l2_full_ratio",
+                    "ex_has_default": true,
+                    "default": 9e-05,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--l2_diference_penalty"
+                    ],
+                    "input": true,
+                    "dest": "l2_diference_penalty",
+                    "ex_has_default": true,
+                    "default": 0.001,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--first_scale_down_ratio"
+                    ],
+                    "input": true,
+                    "dest": "first_scale_down_ratio",
+                    "ex_has_default": true,
+                    "default": 0.3,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--transition_scale_down_ratio"
+                    ],
+                    "input": true,
+                    "dest": "transition_scale_down_ratio",
+                    "ex_has_default": true,
+                    "default": 0.5,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--growth_rate"
+                    ],
+                    "input": true,
+                    "dest": "growth_rate",
+                    "ex_has_default": true,
+                    "default": 20,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--layers_per_dense_block"
+                    ],
+                    "input": true,
+                    "dest": "layers_per_dense_block",
+                    "ex_has_default": true,
+                    "default": 8,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--dense_blocks"
+                    ],
+                    "input": true,
+                    "dest": "dense_blocks",
+                    "ex_has_default": true,
+                    "default": 3,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--labels"
+                    ],
+                    "input": true,
+                    "dest": "labels",
+                    "ex_has_default": true,
+                    "default": 3,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--load_dir"
+                    ],
+                    "input": true,
+                    "dest": "load_dir",
+                    "ex_has_default": true,
+                    "default": "data",
+                    "type": "str",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--models_dir"
+                    ],
+                    "input": true,
+                    "dest": "models_dir",
+                    "ex_has_default": true,
+                    "default": "models/",
+                    "type": "str",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--logdir"
+                    ],
+                    "input": true,
+                    "dest": "logdir",
+                    "ex_has_default": true,
+                    "default": "logs",
+                    "type": "str",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--word_vec_path"
+                    ],
+                    "input": true,
+                    "dest": "word_vec_path",
+                    "ex_has_default": true,
+                    "default": "data/word-vectors.npy",
+                    "type": "str",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--omit_word_vectors"
+                    ],
+                    "input": false,
+                    "dest": "omit_word_vectors",
+                    "ex_has_default": true,
+                    "default": false,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--omit_chars"
+                    ],
+                    "input": false,
+                    "dest": "omit_chars",
+                    "ex_has_default": true,
+                    "default": false,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--omit_syntactical_features"
+                    ],
+                    "input": false,
+                    "dest": "omit_syntactical_features",
+                    "ex_has_default": true,
+                    "default": false,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--omit_exact_match"
+                    ],
+                    "input": false,
+                    "dest": "omit_exact_match",
+                    "ex_has_default": true,
+                    "default": false,
+                    "type": "float",
+                    "mandatory": false
+                },
+                {
+                    "names": [
+                        "--train_word_embeddings"
+                    ],
+                    "input": false,
+                    "dest": "train_word_embeddings",
+                    "ex_has_default": true,
+                    "default": false,
+                    "type": "float",
+                    "mandatory": false
+                }
+            ],
+            "ins": [
+                {
+                "type": "dir",
+                "location": "data",
+                "artifact": "dataset",
+                "ex_from": "cmd",
+                "ex_in_repo": false
+                },
+                {
+                    "type": "dir",
+                    "location": "snli",
+                    "artifact": "dataset",
+                    "ex_from": "manual",
+                    "ex_in_repo": false
+                }
+            ],
+            "outs": [
+                {
+                    "type": "dir",
+                    "location": "models",
+                    "artifact": "model",
+                    "ex_from": "cmd",
+                    "ex_in_repo": false
+                },
+                {
+                    "type": "dir",
+                    "location": "logs",
+                    "artifact": "log",
+                    "ex_from": "cmd",
+                    "ex_in_repo": false
+                }
+            ]
+            }
+      ],
+    "ex_metrics": {
+      "metrics_files": ["unknown"],
+      "prints": ["unknown"],
+      "plots": ["unknown"],
+      "others": []
+    },
+    "ex_hyperparams": {
+      "from_cmd": ["unknown"],
+      "config_files": [["unknown"]],
+      "in_code": [["unknown"]],
+      "others": []
+    }
+  }
