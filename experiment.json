@@ -515,8 +515,8 @@
     },
     "ex_hyperparams": {
       "from_cmd": ["unknown"],
-      "config_files": [["unknown"]],
-      "in_code": [["unknown"]],
+      "config_files": ["unknown"],
+      "in_code": ["unknown"],
       "others": []
     }
   }
