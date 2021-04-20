@@ -508,15 +508,20 @@
             }
       ],
     "ex_metrics": {
-      "metrics_files": ["unknown"],
-      "prints": ["unknown"],
-      "plots": ["unknown"],
-      "others": []
+      "metrics_files": [],
+      "prints": [],
+      "plots": [],
+      "others": [
+        {
+            "name": "saved to log",
+            "metrics": ["train_acc", "train_loss", "test_acc", "test_loss", "dev_acc", "dev_loss"]
+        }
+      ]
     },
     "ex_hyperparams": {
-      "from_cmd": ["unknown"],
-      "config_files": ["unknown"],
-      "in_code": ["unknown"],
+      "from_cmd": ["batch_size", "train_word_embeddings", "char_embed_size", "char_conv_filters",  "char_conv_kernel", "dropout_initial_keep_rate", "dropout_decay_rate", "dropout_decay_interval", "first_scale_down_ratio", "transition_scale_down_ratio", "growth_rate", "layers_per_dense_block", "dense_blocks"],
+      "config_files": [],
+      "in_code": [],
       "others": []
     }
   }
