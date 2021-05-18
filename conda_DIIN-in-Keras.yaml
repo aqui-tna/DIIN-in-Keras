@@ -1,0 +1,11 @@
+name: DIIN-in-Keras
+channels:
+- default
+dependencies:
+- python=3
+- pip
+- pip:
+  - tqdm
+  - keras
+  - numpy
+  - tensorflow
